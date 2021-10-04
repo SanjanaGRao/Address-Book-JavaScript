@@ -191,6 +191,22 @@ let deleteContact = (name) => {
     if (flag == 1) 
         console.log("Sorry, Contact not available in addressBook.");
 };
+
+//To search contacts based on city or state
+let searchCityState = (place) => {
+    let newArray = addressBook;
+    newArray.filter( () =>
+    {
+        addressBook.find((contact) => 
+        {
+            if (contact.city == place || contact.state == place) 
+            {
+                return true;
+            }
+      });
+    });
+    console.log("Result:" + JSON.stringify(filteredArray));
+};
   
 
 let flag = 1;
@@ -227,6 +243,12 @@ function addressBookMain()
             case 5:
                 {
                     console.log("Number of contacts present in the Address Book is: " + addressBook.length);
+                    break;
+                }
+            case 6:
+                {
+                    let place = prompt("Enter City or State:");
+                    searchCityState(place);
                     break;
                 }
             //Terminates while loop    
