@@ -185,7 +185,7 @@ function addressBookMain()
 {
     while (flag == 1) 
     {
-        console.log(" 1. Add a Contact\n 2. Display Address Book\n 3. Edit Contact\n 4. Delete Contact");
+        console.log(" 1. Add a Contact\n 2. Display Address Book\n 3. Edit Contact\n 4. Delete Contact\n 5. Count the Contacts\n");
         let userChoice = prompt("Please enter your choice: ");
         switch(parseInt(userChoice)) 
         {
@@ -209,6 +209,11 @@ function addressBookMain()
                 {
                     let name = prompt("Enter the name of the contact to be deleted:");
                     deleteContact(name);
+                    break;
+                }
+            case 5:
+                {
+                    console.log("Number of contacts present in the Address Book is: " + addressBook.length);
                     break;
                 }
             //Terminates while loop    
