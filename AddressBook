@@ -1,4 +1,5 @@
 const prompt = require("prompt-sync")();
+const validation = require("./RegexValidation.js");
 
 let firstName = prompt("First name: ");
 let lastName = prompt("Last name: ");
@@ -18,7 +19,7 @@ let contact =
     state: state,
     pin: pin,
     phNumber: phNumber,
-    email: email,
+    email: email
 };
 console.log("Details Added.");
 console.log(contact);
