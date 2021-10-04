@@ -160,14 +160,32 @@ let editContact = (name) =>
     }
     if (flag == 0)
       console.log("Sorry, Contact not available in addressBook.");
-  };
+};
+
+//To delete a contact
+let deleteContact = (name) => {
+    let flag = 1;
+    for (let i = 0; i < addressBook.length; i++) 
+    {
+      if (addressBook[i].firstName == name) 
+      {
+        flag = 0;
+        //Splice used to delete contact
+        addressBook.splice(i, 1); 
+        break;
+      }
+    }
+    if (flag == 1) 
+        console.log("Sorry, Contact not available in addressBook.");
+};
+  
 
 let flag = 1;
 function addressBookMain() 
 {
     while (flag == 1) 
     {
-        console.log(" 1. Add a Contact\n 2. Display Address Book\n 3. Edit Contact");
+        console.log(" 1. Add a Contact\n 2. Display Address Book\n 3. Edit Contact\n 4. Delete Contact");
         let userChoice = prompt("Please enter your choice: ");
         switch(parseInt(userChoice)) 
         {
@@ -185,6 +203,12 @@ function addressBookMain()
                 {
                     let name = prompt("Enter the name of the contact to be edited: ");
                     editContact(name);
+                    break;
+                }
+            case 4:
+                {
+                    let name = prompt("Enter the name of the contact to be deleted:");
+                    deleteContact(name);
                     break;
                 }
             //Terminates while loop    
