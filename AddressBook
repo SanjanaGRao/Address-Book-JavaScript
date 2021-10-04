@@ -1,26 +1,87 @@
 const prompt = require("prompt-sync")();
 const validation = require("./RegexValidation.js");
 
-let firstName = prompt("First name: ");
-let lastName = prompt("Last name: ");
-let address = prompt("Address: ");
-let city = prompt("City: ");
-let state = prompt("State: ");
-let pin = prompt("Pin Code: ");
-let phNumber = prompt("Contact number: ");
-let email = prompt("Email ID: ");
+//AddressBook Array
+let addressBook = [];
 
-let contact =
+//Ability to add contacts
+let addContactAddressBook = (() => 
 {
-    firstName: firstName,
-    lastName: lastName,
-    address: address,
-    city: city,
-    state: state,
-    pin: pin,
-    phNumber: phNumber,
-    email: email
-};
-console.log("Details Added.");
-console.log(contact);
+    let firstName = prompt("First name: ");
+    let lastName = prompt("Last name: ");
+    let address = prompt("Address: ");
+    let city = prompt("City: ");
+    let state = prompt("State: ");
+    let pin = prompt("Pin Code: ");
+    let phNumber = prompt("Contact number: ");
+    let email = prompt("Email ID: ");
+    try
+    {
+        validation.firstNameCheck(firstName);
+        validation.lastNameCheck(lastName);
+        validation.addressCheck(address);
+        validation.cityCheck(city);
+        validation.stateCheck(state);
+        validation.pinCheck(pin);
+        validation.phoneCheck(phNumber);
+        validation.emailCheck(email);
+    } 
+    catch (error) 
+    {
+    console.error(error);
+    addContactAddressBook();
+    }
 
+    let contact =
+    {
+        firstName: firstName,
+        lastName: lastName,
+        address: address,
+        city: city,
+        state: state,
+        pin: pin,
+        phNumber: phNumber,
+        email: email,
+    };
+    addressBook.push(contact);
+    console.log("Details Added.");
+    console.log(contact);
+});
+
+//To display AddressBook Contacts
+let displayAddressBook = (() => 
+{
+    console.log(addressBook);
+});
+
+let flag = 1;
+function addressBookMain() 
+{
+    while (flag == 1) 
+    {
+        console.log(" 1. Add a Contact\n 2. Display Address Book");
+        let userChoice = prompt("Please enter your choice: ");
+        switch(parseInt(userChoice)) 
+        {
+            case 1:
+                {
+                    addContactAddressBook();
+                    break;
+                }
+            case 2:
+                {
+                    displayAddressBook();
+                    break;
+                }
+            //Terminates while loop    
+            default:
+                {
+                    console.log("Invalid option.");
+                    flag = 0;
+                    break;
+                }
+        }
+    }
+}
+
+addressBookMain();
